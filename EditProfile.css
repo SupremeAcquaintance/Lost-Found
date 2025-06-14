@@ -1,0 +1,134 @@
+/* EditProfile.css */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; 
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure modal is on top */
+}
+
+.modal-content {
+    background: rgb(16, 37, 37);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    width: 400px; /* Fixed width for modal */
+    max-width: 90%; /* Responsive max width */
+    animation: fadeIn 0.9s ease; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px); /* Slide in from above */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h3 {
+  margin: 0 0 15px; /* Space below heading */
+  color: #ccc; /* Darker text for contrast */
+  font-size: 1.5rem; /* Slightly larger font size */
+  text-align: center; /* Centered heading */
+}
+
+label {
+  display: block; /* Block display for label */
+  margin-bottom: 10px; /* Space below label */
+  font-weight: bold; /* Bold label for emphasis */
+  color: #ccc;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 95%; /* Full width for input */
+  padding: 10px; /* Padding for input */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  backdrop-filter: blur(10px);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+  border-color: #ff6b6b; /* Highlight border on focus */
+  outline: none; /* Remove outline */
+}
+
+.profile-icon {
+    color: rgb(16, 37, 37); /* Match the hero section color */
+    margin-bottom: 0px;
+}
+
+.save-icon, .cancel-icon{
+    color: rgb(225, 233, 233); /* Match the hero section color */
+    margin-bottom: 0px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between; /* Space between buttons */
+  margin-top: 20px; /* Space above buttons */
+}
+
+.cancel-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  color: #00f2fe;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.save-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  color: #00f2fe;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.save-btn:hover {
+    background-color:rgb(5, 92, 31); /* Darker red on hover */
+    box-shadow: 0 0 12px rgb(8, 212, 70);
+    transform: translateY(-3px);
+}
+
+.save-btn:disabled {
+    background-color: #ccc; /* Grey color when disabled */
+    cursor: not-allowed; /* Change cursor to indicate disabled state */
+}
+
+.cancel-btn:hover {
+    background-color:rgb(134, 3, 3); 
+    box-shadow: 0 0 12px rgb(253, 5, 5);
+    transform: translateY(-3px);
+}

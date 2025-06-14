@@ -1,0 +1,229 @@
+/* User Management Container */
+.user-management-container {
+  background: #0d1b2a;
+  color: #e0e1dd;
+  padding: 2rem;
+  font-family: 'Rockwell', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  width: 96%;
+  margin-top: 0px;
+}
+
+.user-search-bar {
+    margin-bottom: 1rem;
+}
+
+.user-search-bar:focus{
+    background-color: hsl(0, 0%, 100%);
+    color: black;
+}
+
+/* Header */
+.um-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.um-header h2 {
+  font-size: 1.8rem;
+  color: whitesmoke;
+}
+.add-admin-btn {
+  background: #1b263b;
+  color: #e0e1dd;
+  border: 1px solid #415a77;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+.add-admin-btn:hover {
+  background: #415a77;
+  border-color: #a3cef1;
+  color: #fff;
+}
+
+/* Tabs */
+.user-tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.user-tabs button {
+  background: #1b263b;
+  border: none;
+  color: #e0e1dd;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.user-tabs button.active,
+.user-tabs button:hover {
+  background: #415a77;
+  color: #a3cef1;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+}
+
+/* User Grid */
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.6rem;
+}
+
+/* User Card */
+.user-card {
+  background: #1b263b;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  overflow-x: hidden;
+}
+
+.user-card:hover{
+    box-shadow: 0 0 12px whitesmoke;
+    transform: translateY(-3px);
+}
+.user-card h4 {
+  margin-bottom: 0.5rem;
+  color: #a3cef1;
+}
+.user-card p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
+.status.active {
+  color: #98c1d9;
+  font-weight: bold;
+}
+.status.suspended {
+  color: #e63946;
+  font-weight: bold;
+}
+
+/* User Actions */
+.user-actions {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.user-actions button {
+  flex: 1;
+  background: #415a77;
+  border: none;
+  color: #e0e1dd;
+  padding: 0.4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+.user-actions button:hover {
+  background: #a3cef1;
+  color: #0d1b2a;
+}
+
+/* Modals - Overlay */
+.user-profile-modal,
+.create-admin-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 27, 42, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modals - Content */
+.modal-content {
+  background: #1b263b;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  color: #e0e1dd;
+}
+.modal-content h3 {
+  margin-bottom: 1rem;
+  color: #a3cef1;
+}
+
+.modal-content p{
+    margin-top: 0px;
+    color: whitesmoke;
+    margin-bottom: 0px;
+}
+.modal-content input {
+  width: 100%;
+  padding: 0.6rem;
+  margin: 0.5rem 0;
+  border: 1px solid #415a77;
+  border-radius: 6px;
+  background: #0d1b2a;
+  color: #e0e1dd;
+}
+
+/* Modals - Close Button */
+.close-modal {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #e0e1dd;
+  cursor: pointer;
+}
+
+/* Modals - Buttons */
+.modal-actions,
+.create-admin-modal .modal-content button {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.modal-actions button,
+.create-admin-modal .modal-content button {
+  flex: 1;
+  background: #415a77;
+  border: none;
+  color: #e0e1dd;
+  padding: 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.modal-actions button:hover,
+.create-admin-modal .modal-content button:hover {
+  background: #a3cef1;
+  color: #0d1b2a;
+}
+
+/* Scrollbar Styling for Modals */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background: #415a77;
+  border-radius: 4px;
+}
+.modal-content::-webkit-scrollbar-track {
+  background: #0d1b2a;
+}

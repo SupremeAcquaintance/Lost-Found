@@ -1,0 +1,114 @@
+.activity-log-container {
+  padding: 2rem;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.log-tabs {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.log-tabs button {
+  background: #153857;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.log-tabs button.active {
+  background: #4b6cb7;
+  color: #030202;
+}
+
+.log-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.log-search-bar input {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+.search-icon {
+  color: #888;
+}
+
+.log-grid {
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.log-card {
+  padding: 1rem;
+  color: black;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgb(206, 37, 37);
+}
+
+.log-card h4 {
+  margin: 0;
+}
+
+.log-card button {
+  margin-top: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border: none;
+  border-radius: 10px;
+  background: #4b6cb7;
+  color: #030202;
+  cursor: pointer;
+}
+
+.log-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #010114;
+  border-radius: 20px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.log-metadata {
+  background:rgba(244, 244, 244, 0);
+  padding: 1rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+}

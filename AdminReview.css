@@ -1,0 +1,73 @@
+.admin-review-section {
+  background: #0f0f0f;
+  color: #f1f1f1;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+  max-width: 800px;
+  margin: auto;
+}
+
+.heading-icon {
+  color: #00ffff;
+  margin-right: 12px;
+}
+
+.review-card {
+  background: #1a1a1a;
+  border-radius: 20px;
+  padding: 30px;
+  margin: 0 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+}
+
+.review-stars .star-filled {
+  color: #ffcc00;
+  margin: 0 2px;
+  font-size: 1.2rem;
+}
+
+.review-content {
+  margin-top: 20px;
+  font-size: 0.95rem;
+}
+
+.review-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffffb3;
+  margin-bottom: 10px;
+}
+
+.review-user-icon,
+.review-email-icon,
+.review-comment-icon {
+  color: #00ffff;
+}
+
+.review-comment {
+  font-style: italic;
+  color: #e0e0e0;
+  margin: 10px 0;
+}
+
+.review-date {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.delete-btn {
+  background: #ff4c4c;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: #cc0000;
+}

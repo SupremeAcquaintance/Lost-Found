@@ -1,0 +1,174 @@
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 7px;
+  padding: 5px;
+  position: relative;
+  height: fit-content;
+  width: inherit;
+  max-width: 450px;
+  min-width: 100px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 0%;
+  align-items: center;
+  justify-items: auto;
+  padding: 2rem;
+  border-radius: 8px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 12px whitesmoke;
+}
+
+.registration-page{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0px;
+  width: 100%;
+}
+
+.registration-page p {
+  font-size: 1rem;
+  color: whitesmoke;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.registration-icon {
+  color: whitesmoke; /* Match the hero section color */
+  margin-bottom: 0px;
+}
+
+.registration-container h2 {
+  color: whitesmoke; /* Match the hero section color */
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  margin-top: 0px;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.registration-container input{
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  color: whitesmoke;
+  font-size: 1rem;
+  outline: none;
+  backdrop-filter: blur(10px);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  width: 440px;
+  margin-bottom: 1rem;
+  padding-left: 2px;
+}
+.registration-container select {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  color: whitesmoke;
+  font-size: 1rem;
+  outline: none;
+  backdrop-filter: blur(10px);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.registration-container input:focus, .registration-container select:focus {
+  border: none; /* Highlight border on focus */
+  outline: none;
+  box-shadow: 0 0 12px whitesmoke;
+}
+
+.btn {
+    background-color:rgb(96, 6, 6); /* Vibrant red color */
+    color: white;
+    padding: 2px 2px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
+    flex: 1; /* Allow buttons to grow */
+    align-self: center;
+    width: fit-content;
+}
+
+.btn:disabled {
+  background-color: #ccc; /* Grey color when disabled */
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+}
+
+.btn:hover {
+  box-shadow: 0 0 12px whitesmoke;
+  border: none;
+}
+
+.login-prompt {
+  margin-top: 20px;
+  font-size: 1rem;
+
+}
+
+.link-btn {
+  background-color: transparent;
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.link-btn:hover {
+  color: rgb(12, 210, 232); /* Lighter shade on hover */
+}
+
+.registration-container notification {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+.welcome-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.welcome-modal-content {
+    padding: 2rem;
+    background: linear-gradient(145deg, #060613, #010114);
+    border-radius: 1rem;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 0 14px whitesmoke;
+}
+
+.welcome-modal-content h3{
+  color: whitesmoke;
+}
+.welcome-modal-content pre {
+  text-align: left;
+  background: whitesmoke;
+  color: black;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+  font-family: "Rockwell", sans-serif;
+}
+
+.go-to-home-btn{
+
+}
