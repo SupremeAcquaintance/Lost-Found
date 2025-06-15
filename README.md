@@ -1,22 +1,23 @@
 # Lost-Found System
 ![image](https://github.com/user-attachments/assets/87486a1b-79ec-4ce0-9071-d0950628b291)
-Lost & Found is a comprehensive web platform that connects people who have lost items with those who have found them. Its purpose is to provide a centralized system for reporting, searching, and reclaiming lost belongings. The system serves everyday users (students, commuters, travelers, etc.) who may misplace items and the staff or volunteers (admins and custodians) who manage found items. The architecture follows a classic web application model: a React-based frontend communicates with a backend server (e.g., Node.js/Express) and a database (e.g., MongoDB). Key features include user authentication, item reporting, automated matching, chat between users, and administrative management of claims and users.
+Lost & Found is a comprehensive web platform that connects people who have lost items with those who have found them. Its purpose is to provide a centralized system for reporting, searching, and reclaiming lost belongings. The system serves everyday users (students, commuters, travelers, etc.) who may misplace items and the staff, security or appointed authority (admins) who manage found items. The architecture follows a classic web application model: a React-based frontend communicates with a backend server (Node.js/Express, Python/Flask) and a database (Microsoft SQL). Key features include user authentication, item reporting, automated matching, chat between users, and administrative management of items, claims and users.
 
 # High-Level Architecture
-The application is divided into a frontend (React) and a backend (Node/Express) with a database (MongoDB). The frontend uses React Router for navigation and Context API for global state (such as authentication and notifications). The backend exposes RESTful APIs for all operations: user auth, item reports, claims, matches, chats, etc. Data flows as follows:
-Authentication: Users log in or register via the frontend, which calls the backend /login or /register endpoints. On success, a JWT or session token is stored in AuthContext and local storage. This token is attached to all future API calls.
+The application is divided into a frontend (React) and a backend (Node/Express, Python/Flask) with a Microsoft SQL Relational database. The frontend uses React Router for navigation and Context API for global state (such as authentication). The backend exposes RESTful APIs for all operations: user auth, item reports, claims, matches, chats, etc. 
+# Data flows as follows:
+Authentication: Users log in or register via the frontend, which calls the backend /login or /register endpoints. On success, a session token is stored in AuthContext and local storage. This token is attached to all future API calls.
 
 # Item Reporting & Matching: 
-Users report lost or found items by filling out a form. The frontend POSTs this data to the server (via an API call). The backend stores the item in MongoDB and may run a matching algorithm to find potential counterpart reports, notifying relevant users.
+Users report lost or found items by filling out a form. The frontend POSTs this data to the server (via an API call). The Node backend calls the Python Flask service for embedding generations, then stores the item plus the embeddings in the SQL database and runs a matching algorithm using cosine similarity (semantic matching) to find potential counterpart reports, notifying relevant users.
 
 # Chat & Notifications: 
 When there is a potential match or claim, the system notifies users. A real-time chat component (using WebSockets or polling) allows the finder and claimant to communicate. Notifications (toasts or in-app alerts) inform users of new messages, matches, or admin updates.
 
 # Administration: 
-Admin users have access to management pages (Claim Management, Item Management, User Management). The frontend fetches data (like all claims or users) from the backend, and actions (approve/reject claim, deactivate user, etc.) are sent via API calls.
+Admin users have access to management pages (Claim Management, Item Management, User Management, Review Management). The frontend fetches data (like all claims or users) from the backend, and actions (approve/reject claim, deactivate user, etc.) are sent via API calls.
 
 # Data Flow Example: 
-A typical flow — A user logs in, goes to the Report page, fills out a form for a found item, and submits. The frontend API call /api/items stores the item. The backend may compare this new item to existing lost items and generate a match. If a match is detected, the frontend receives a notification via the notifications system. The user can then go to the Match component to see details and possibly start a chat with the person who reported the matching lost item.
+Typical flow —> A user logs in, goes to the Report page, fills out a form for a found item, and submits. The frontend POSTs this data to the server (via an API call). The Node backend calls the Python Flask service for embedding generations, then stores the item plus the embeddings in the SQL database and runs a matching algorithm using cosine similarity (semantic matching) to find potential counterpart reports, notifying relevant users. The user can then go to the Match component to see details and possibly start a chat with the person who reported the matching lost item or claim the item directly from there.
  
 ![SECOND matches](https://github.com/user-attachments/assets/88402e92-ed83-40a0-ac40-f3774862b96e)
 
@@ -25,10 +26,10 @@ A typical flow — A user logs in, goes to the Report page, fills out a form for
 Frontend	React (with React Router, Context API), Axios
 Styling/UX	CSS (e.g. Tailwind or Material UI), React components
 Backend	Node.js, Express.js (RESTful API)
+NLP Python Sentence Transformer Flask
 Real-time	Socket.IO or WebSocket (for chat)
 Database	SQL Database
 Authentication	JSON Web Tokens (JWT)
-Deployment	Docker (Dockerfile for front/back, Docker Compose), Node.js
 Other	Babel, Webpack (for frontend bundling), ESLint/Prettier (code quality)
 
 # Installation (Manual)
@@ -49,12 +50,12 @@ Navigate to the server directory: cd scr/backend/nlp-embedding
 Create environment: python -m venv nlpenv
 Activate environment: nlpenv\Scripts\activate
 Install dependencies: pip install Sentence-transformers, Flask
-Start the server: python embedding_service.py. it will listen on the specified port
+Start the server: python embedding_service.py. it will listen on the specified port, which in this case is http://localhost:3000
 
 ## Frontend Setup
 In a new terminal, in project directory: Lost-Found
 Install dependencies: npm install, npm install @fortawesome, react-slick, etc
-Start the development server: npm start. This opens the React app (On http://localhost:3000).
+Start the development server: npm start. This opens the React app (On http://localhost:3001).
 
 ## Database
 Ensure SQL Server is running (locally or via a cloud service). The backend will connect using the config in cd src/backend/models/config.
@@ -89,24 +90,32 @@ Fetches chat history through REST (axios/fetch) and uses WebSockets for live upd
 ![image](https://github.com/user-attachments/assets/f9f06cf6-3fc5-4e9d-8c26-4c6bf1eaa6c0)
 
 
-Purpose: Allows a user to claim (or verify ownership of) a found item. For example, if User A reported an item found, User B (who lost the item) can claim it here.
-How It Works: Likely accessed via an item detail or match page. The component renders a form where the claimant enters details (e.g., a message or evidence). On submission, it sends a POST request to the backend (e.g., POST /api/claims) with the claim details (user ID from context, item ID).
-What It Renders: A form or modal with fields like “Claim Message” and a submit button. It may also show item details for context.
+# Purpose:
+Allows a user to claim (or verify ownership of) a found item. For example, if User A reported an item found, User B (who lost the item) can claim it here.
+# How It Works: 
+It can accessed via an item modal or match modal. The component renders a form where the claimant enters details (description message or picture evidence). On submission, it sends a POST request to the backend (e.g., POST /api/claims) with the claim details (user ID from context, item ID).
+# What It Renders:
+A form or modal with fields like “Claim Message” and a submit button. It may also show item details for context.
 Interactions:
-Props: May receive the itemId of the found item to claim (from route or parent).
-AuthContext: Uses the current user’s ID/token to attach to the claim.
-API Calls: On submit, calls an endpoint to create a new claim. Shows a success/failure notification afterward (using the notifications system).
+# Props:
+Will receive the itemId of the found item to claim (from route or parent).
+# AuthContext: 
+Uses the current user’s ID/token to attach to the claim.
+# API Calls: 
+On submit, calls an endpoint to create a new claim. Shows a success/failure notification afterward (using the notifications system).
 
 ## ClaimManagement
 ![image](https://github.com/user-attachments/assets/44662c5d-04df-418b-9ef6-31037c3b04d2)
 
 ### Purpose: 
 An admin view to oversee all item claims made by users. Admins can approve or reject claims.
-How It Works: On mount, fetches a list of all pending claims via an API call (e.g., GET /api/claims). It displays each claim (item info, claimant info, date). Admin can click “Approve” or “Reject” for each.
-What It Renders: A table or list of claim entries. Each entry might show the item name, who claimed it, and action buttons. A search or filter interface may exist to find specific claims.
+# How It Works: 
+On mount, fetches a list of all pending claims via an API call (e.g., GET /api/claims). It displays each claim (item info, claimant info, date). Admin can click “Approve” or “Reject” for each.
+# What It Renders: 
+A table or list of claim entries. Each entry might show the item name, who claimed it, and action buttons. A search or filter interface may exist to find specific claims.
 ### Interactions:
 ### Context: 
-This should only be accessible to admin (AuthContext’s user role is checked, possibly via protected route).
+This should only be accessible to admin (AuthContext’s user role is checked, via protected route).
 ### API Calls: 
 Fetch all claims, and for actions it sends PUT/PATCH requests (e.g., PUT /api/claims/:claimId/approve) to update claim status. Upon success, it refreshes the list (or updates state) and triggers a notification (e.g., "Claim approved").
 
@@ -119,36 +128,45 @@ A form where users report a new lost or found item.
 Presents fields for item description, category, location, date, and an image upload. On form submit, the data is sent to the backend (e.g., POST /api/items) to create the report in the database.
 ### What It Renders: 
 Input fields (text, dropdowns, date picker, file upload) and a submit button. May also show current logged-in user’s info (from AuthContext).
-Interactions:
+# Interactions:
 Props: None; this is usually a standalone page.
 AuthContext: Attach the current user’s ID to the report (so items are linked to a reporter).
 API Calls: After form validation, calls the API to save the item. On success, it shows a notification (“Report submitted!”) and possibly redirects to the Item Management or Profile page.
 
 ## Match![image](https://github.com/user-attachments/assets/dfe21baa-7e2a-4721-9195-947a8b583c71)
 
-Purpose: Displays potential matches between lost and found items, helping users or admins see likely pairings.
-How It Works: On access, the component may fetch matching results via an API (e.g., GET /api/matches) or compute them client-side by comparing reported lost and found items. Matches could be generated automatically by the server after each new report.
-What It Renders: A list or table of matches, each showing a lost item and a found item side by side with a match score or confidence. It may allow users to confirm if the match is correct.
-Interactions:
-Props: Possibly none, or optional filters via query params.
-AuthContext: The user’s role might determine which matches they see (e.g., a user sees only their matches, an admin sees all).
-API Calls: Fetch match data from the server. Might also allow “confirm match” which calls an API to link the two items officially.
+# Purpose: 
+Displays potential matches between lost and found items, helping users or admins see likely pairings.
+# How It Works: 
+On access, the component may fetch matching results via an API (e.g., GET /api/matches) or compute them client-side by comparing reported lost and found items. Matches could be generated automatically by the server after each new report.
+# What It Renders: 
+A list or table of matches, each showing a lost item and a found item side by side with a match score or confidence. It may allow users to confirm if the match is correct.
+# Interactions:
+Props: % theshold input from the user via request params.
+AuthContext: The user's role determines which matches they see (e.g., a user sees only their matches, an admin sees all).
+API Calls: Post % match threshold abd Fetch match data from the server. Also notifies the users who posted the matching reports.
 
 ## Profile![image](https://github.com/user-attachments/assets/f785afe1-378b-4043-bbf9-d4a66f72e6f3)
 
-Purpose: Shows the logged-in user’s profile and related data.
-How It Works: Fetches user data from backend (e.g., GET /api/users/:userId using AuthContext’s ID). Also fetches items and claims related to this user.
-What It Renders: The user’s personal information (name, email), and lists of items they reported (both lost and found), as well as the claims they made or have on their items. It may allow editing profile info.
-Interactions:
+# Purpose:
+Shows the logged-in user’s profile and related data.
+# How It Works: 
+Fetches user data from backend (e.g., GET /api/users/:userId using AuthContext’s ID). Also fetches items and claims related to this user.
+# What It Renders:
+The user’s personal information (name, email), and user's activity log. It allows editing profile info.
+# Interactions:
 Props: Typically none (it infers the user from context).
 AuthContext: Provides the current user ID and name to display.
 API Calls: Retrieve and update user info, and get lists of items/claims via APIs.
 
 ## Registration
-Purpose: Handles user sign-up (and possibly login if combined).
-How It Works: Renders a form where a new user enters details (username, email, password). On submit, sends these to the backend (e.g., POST /api/register). After successful registration, it may automatically log the user in or redirect to the login page.
-What It Renders: Input fields for username, email, password (and possibly confirm password), and a submit button. It may include client-side validation (password strength, matching).
-Interactions:
+# Purpose:
+Handles user sign-up
+# How It Works: 
+Renders a form where a new user enters details (username, email, password). On submit, sends these to the backend (e.g., POST /api/register). After successful registration, it automatically log the user in and redirects to home page.
+# What It Renders: 
+Input fields for username, email, password (and possibly confirm password), and a submit button.
+# Interactions:
 Props: None; this is a standalone page.
 AuthContext: On successful registration or login, it will update the AuthContext with the new user’s info.
 API Calls: Calls /api/register or /api/login. On success, sets authentication token in context and local storage. Also triggers navigation to the dashboard or home page.
@@ -156,10 +174,13 @@ API Calls: Calls /api/register or /api/login. On success, sets authentication to
 ## ItemManagement
 ![image](https://github.com/user-attachments/assets/e6f990f7-62d7-4168-b6bd-2996c3d00844)
 
-Purpose: Admin interface for managing all reported items (lost or found).
-How It Works: On mount, it fetches all items (GET /api/items) and displays them. Admins can edit item details, mark items as recovered, or delete reports.
-What It Renders: A table or list of items with columns like “Title”, “Status”, “Reporter”, and action buttons (Edit, Delete, Mark Recovered). Each item row may be expandable to view details or claims.
-Interactions:
+# Purpose: 
+Admin interface for managing all reported items (lost or found).
+# How It Works: 
+On mount, it fetches all items (GET /api/items) and displays them. Admins can edit item details, mark items as recovered, or delete reports.
+# What It Renders: 
+A table or list of items with columns like “Title”, “Status”, “Reporter”, and action buttons (Edit, Delete, Mark Recovered). Each item row may be expandable to view details or claims.
+# Interactions:
 Context: Only accessible to admin users (checked via AuthContext).
 API Calls:
 Fetch all items.
