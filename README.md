@@ -17,6 +17,7 @@ Admin users have access to management pages (Claim Management, Item Management, 
 
 # Data Flow Example: 
 A typical flow — A user logs in, goes to the Report page, fills out a form for a found item, and submits. The frontend API call /api/items stores the item. The backend may compare this new item to existing lost items and generate a match. If a match is detected, the frontend receives a notification via the notifications system. The user can then go to the Match component to see details and possibly start a chat with the person who reported the matching lost item.
+ 
 ![SECOND matches](https://github.com/user-attachments/assets/88402e92-ed83-40a0-ac40-f3774862b96e)
 
 # Tech Stack
