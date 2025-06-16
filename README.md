@@ -41,9 +41,9 @@ git clone https://github.com/SupremeAcquaintance/Lost-Found.git
 ![image](https://github.com/user-attachments/assets/888cc7bd-98ca-404e-8126-6054ea2fede6)
 
 ## Node Backend Setup
-Navigate to the server directory: cd scr/backend/models
-Install dependencies: npm install
-Install extra dependencies: npm install bcrypt, mssql, cors, etc.
+Navigate to the server directory: 'cd scr/backend/models'
+Install dependencies: 'npm install'
+Install extra dependencies: 'npm install bcrypt mssql cors' etc.
 Start the server: node index.js. It will listen on the specified port.
 
 ## Flask Service Setup
