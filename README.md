@@ -161,6 +161,8 @@ AuthContext: Provides the current user ID and name to display.
 API Calls: Retrieve and update user info, and get lists of items/claims via APIs.
 
 ## Registration
+![image](https://github.com/user-attachments/assets/22e7b599-df75-4d43-8548-db62791cbc40)
+
 ### Purpose:
 Handles user sign-up
 ### How It Works: 
@@ -171,6 +173,8 @@ Input fields for username, email, password (and possibly confirm password), and 
 Props: None; this is a standalone page.
 AuthContext: On successful registration or login, it will update the AuthContext with the new user’s info.
 API Calls: Calls /api/register or /api/login. On success, sets authentication token in context and local storage. Also triggers navigation to the dashboard or home page.
+## Admin Registration
+![image](https://github.com/user-attachments/assets/5dc28086-03e0-4c2c-b16b-68735ba581ca)
 
 ## User Settings
 ![image](https://github.com/user-attachments/assets/16de4b8d-6b18-44f5-a4e8-51a45361d02a)
