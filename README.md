@@ -256,9 +256,14 @@ When modifying claim logic (like adding more statuses), update both the backend 
 For new item fields (e.g., “lost or found category”), add form inputs and extend the API accordingly. Reuse existing validation patterns.
 ### UserManagement/ItemManagement:
 If new columns or filters are needed, update the backend query endpoints and then add UI controls. Avoid heavy operations on the client; delegate to the server where possible.
-### Authentication & Authorization: Only modify AuthContext or route guards if you fully understand the impact. For example, if adding roles beyond “admin” and “user,” ensure checks in both frontend (protected routes) and backend (JWT token verification) are updated.
-Code Quality: Adhere to existing code style. For React components, use functional components and hooks as in the project. If adding new third-party libraries (UI libraries, charts, etc.), document them in the README and ensure compatibility. Write descriptive commit messages and update this README if component responsibilities change.
+### Authentication & Authorization:
+Only modify AuthContext or route guards if you fully understand the impact. For example, if adding roles beyond “admin” and “user,” ensure checks in both frontend (protected routes) and backend (JWT token verification) are updated.
+## Code Quality:
+Adhere to existing code style. For React components, use functional components and hooks as in the project. If adding new third-party libraries (UI libraries, charts, etc.), document them in the README and ensure compatibility. Write descriptive commit messages and update this README if component responsibilities change.
 Error Handling: Any new API interactions should handle errors gracefully. Use the notifications system to alert users. Avoid console-only error logging in production code.
-Testing: If tests exist (unit or integration), add or update them when changing logic. If not, consider writing tests for critical functions (authentication, matching, form validation).
-Documentation: When adding features, document their usage. For example, if introducing a new admin dashboard, update this README or add inline comments explaining component props and context usage.
+## Testing: 
+If tests exist (unit or integration), add or update them when changing logic. If not, consider writing tests for critical functions (authentication, matching, form validation).
+## Documentation:
+When adding features, document their usage. For example, if introducing a new admin dashboard, update this README or add inline comments explaining component props and context usage.
+
 By following these guidelines, contributors can safely evolve the Lost & Found system. The goal is to maintain a clean separation of concerns: components should focus on UI and calls, while business logic (matching algorithms, data validation) stays in the backend. Consistent naming and context usage throughout the codebase will help keep the system maintainable and scalable. Enjoy building and improving the Lost & Found platform!
