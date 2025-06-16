@@ -160,16 +160,27 @@ AuthContext: Provides the current user ID and name to display.
 API Calls: Retrieve and update user info, and get lists of items/claims via APIs.
 
 ## Registration
-# Purpose:
+### Purpose:
 Handles user sign-up
-# How It Works: 
+### How It Works: 
 Renders a form where a new user enters details (username, email, password). On submit, sends these to the backend (e.g., POST /api/register). After successful registration, it automatically log the user in and redirects to home page.
-# What It Renders: 
+### What It Renders: 
 Input fields for username, email, password (and possibly confirm password), and a submit button.
-# Interactions:
+### Interactions:
 Props: None; this is a standalone page.
 AuthContext: On successful registration or login, it will update the AuthContext with the new user’s info.
 API Calls: Calls /api/register or /api/login. On success, sets authentication token in context and local storage. Also triggers navigation to the dashboard or home page.
+
+## User Settings
+![image](https://github.com/user-attachments/assets/16de4b8d-6b18-44f5-a4e8-51a45361d02a)
+
+### Purpose:
+Allows logged-in users to manage their personal preferences, including password updates, theme selection, and notification toggles.
+### How It Works:
+On mount, it authenticates the user via AuthContext and fetches saved preferences (GET /api/settings). Users can change their password (POST /api/settings/change-password), update theme/notification settings (PUT /api/settings/preferences), or delete their account (DELETE /api/settings/delete-account).
+
+### What It Renders:
+A tabbed interface with sections like Profile, Preferences, Security, and About. Includes form inputs for passwords, toggle switches for theme/notifications, and buttons for logout and delete account. Feedback is provided via react-toastify.
 
 ## ItemManagement
 ![image](https://github.com/user-attachments/assets/e6f990f7-62d7-4168-b6bd-2996c3d00844)
