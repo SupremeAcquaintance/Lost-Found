@@ -1,5 +1,6 @@
 # Lost-Found
-![image](https://github.com/user-attachments/assets/87486a1b-79ec-4ce0-9071-d0950628b291)
+![image](https://github.com/user-attachments/assets/cfd6db58-0744-434b-80f6-04fa415a3b62)
+
 Lost & Found is a comprehensive web platform that connects people who have lost items with those who have found them. Its purpose is to provide a centralized system for reporting, searching, and reclaiming lost belongings. The system serves everyday users (students, commuters, travelers, etc.) who may misplace items and the staff, security or appointed authority (admins) who manage found items. The architecture follows a classic web application model: a React-based frontend communicates with a backend server (Node.js/Express, Python/Flask) and a database (Microsoft SQL). Key features include user authentication, item reporting, automated matching, chat between users, smart notifications, and administrative management of items, claims and users.
 
 # High-Level Architecture
